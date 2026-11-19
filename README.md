@@ -1,7 +1,10 @@
-# scmfamily: Synthetic Control Family for jamovi
+# scmfamily — synthetic control in jamovi
 
-A jamovi module with ten synthetic-control estimators and a comparison analysis for comparative case studies and panel data.
-All analyses are in the menu group **SCM** and share the same inputs: a long-format panel (unit,
+A jamovi module with ten synthetic-control estimators and a comparison analysis for comparative case studies and panel data. Chinese summary: [README.zh.md](README.zh.md).
+
+## Analyses (jamovi menu: SCM)
+
+All analyses share the same inputs: a long-format panel (unit,
 time, outcome), a treated unit and its first treated period.
 
 | Analysis | Method | Reference | Inference |
@@ -44,7 +47,9 @@ Example data (`data/`, sources in `data/README.md`):
   absorb part of the effect).
 * Elastic-Net, Bayesian and Matrix Completion use outcomes only.
 
-## Agreement with the original packages
+## Validation
+
+### Agreement with the original packages
 
 SDID, Augmented SC and Staggered Augmented SC are ports of *synthdid*, *augsynth* and *multisynth*
 (`R/sdid_engine.R`, `R/augsynth_engine.R`, `R/multisynth_engine.R`). Estimates, weights, penalty choices
@@ -70,16 +75,22 @@ Not compared with a reference package: the covariate versions of Penalized, Deme
 simulated data only), and the conformal inference, which follows Chernozhukov, Wuthrich and Zhu (2021) but
 has no reference run.
 
-## Installation and testing
-
-Build and install with the jamovi developer tools (jamovi closed):
-
+## Install
+- **jamovi library**: in jamovi open the modules button (top right), *jamovi library*, find *Synthetic Control Family* and install (once the module is listed).
+- **Sideload**: download the `.jmo` file and use *Install from file* in the same menu. A `.jmo` works only on the operating system, processor type and jamovi version it was built for.
+- **From source** (needs R and the jamovi compiler `jmvtools`; adjust the path to your jamovi folder):
 ```r
 jmvtools::install(home = "C:/Program Files/jamovi 28.17.0.0")
 ```
 
-Engine tests (run from the module folder): `Rscript tests/test_methods.R`. Required R packages:
-jmvcore, R6, ggplot2, quadprog, osqp, Matrix, glmnet.
+## Use from R (Rj editor, scripts)
+Every analysis is also an R function, for example
+```r
+scmfamily::scm(data = d, outcome = "cigsale", unit = "state", time = "year", treatedUnit = "California", treatmentTime = 1989)
+```
+
+## References
+Papers and R packages behind each analysis appear in the References section of the jamovi output (defined in `jamovi/00refs.yaml`).
 
 ## Known limitations
 
@@ -90,8 +101,14 @@ jmvcore, R6, ggplot2, quadprog, osqp, Matrix, glmnet.
 * Matrix Completion uses a penalty set by hand; the paper chooses it by cross-validation.
 * The Interactive Fixed Effects analysis is the control-only version; it does not choose the number of factors.
 
-## Licence
+## Notes for developers
+- Engine tests (run from the module folder): `Rscript tests/smoke.R`, `tests/test_methods.R`, `tests/test_enet_bscm.R`, `tests/test_reference.R` (reference packages in the local R); required R packages: jmvcore, R6, ggplot2, quadprog, osqp, Matrix, glmnet.
+- Layout: the ports of *synthdid*, *augsynth* and *multisynth* are in `R/sdid_engine.R`, `R/augsynth_engine.R`, `R/multisynth_engine.R`; `R/*.b.R` and `jamovi/*.yaml` are the jamovi front end.
+- Ribbon icon: `icon/`; jmvtools 28.17 cannot attach an icon to a module, so `dev/icon_preview.ps1` (if present) adds one CSS rule for the menu group to jamovi's client stylesheet (administrator PowerShell, restart jamovi afterwards).
 
-GPL (>= 2): version 2 of the GNU General Public License, or any later version (`LICENSE` holds version 2).
-This is compatible with *glmnet* (GPL-2 only), which the Elastic-Net analysis calls. Third-party code and
-data are listed in `NOTICE.md`.
+## How to cite
+Sun, M. *scmfamily: Synthetic Control Family for jamovi* (jamovi module). https://github.com/mingchao-sun/scmfamily. Please also cite the papers behind the estimator you use (listed in the output).
+
+## License
+GPL (>= 2): version 2 of the GNU General Public License, or any later version (`LICENSE` holds version 2). This is compatible with *glmnet* (GPL-2 only), which the Elastic-Net analysis calls.
+Third-party code and data are listed in `NOTICE.md`. Bug reports and suggestions: https://github.com/mingchao-sun/scmfamily/issues
