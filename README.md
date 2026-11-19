@@ -1,6 +1,6 @@
 # scmfamily — synthetic control in jamovi
 
-A jamovi module with ten synthetic-control estimators and a comparison analysis for comparative case studies and panel data. Chinese summary: [README.zh.md](README.zh.md).
+A jamovi module with ten synthetic-control estimators and a comparison analysis for comparative case studies and panel data. Chinese summary: [README.zh.md](README.zh.md). Japanese summary: [README.ja.md](README.ja.md).
 
 ## Analyses (jamovi menu: SCM)
 
