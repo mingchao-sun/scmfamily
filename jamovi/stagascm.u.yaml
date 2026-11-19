@@ -1,0 +1,105 @@
+name: stagascm
+title: "Staggered-Adoption Augmented Synthetic Control"
+jus: '3.0'
+stage: 0
+compilerMode: tame
+children:
+    - type: VariableSupplier
+      persistentItems: false
+      stretchFactor: 1
+      children:
+          - type: TargetLayoutBox
+            label: Outcome
+            children:
+                - type: VariablesListBox
+                  name: outcome
+                  isTarget: true
+                  maxItemCount: 1
+          - type: TargetLayoutBox
+            label: Unit
+            children:
+                - type: VariablesListBox
+                  name: unit
+                  isTarget: true
+                  maxItemCount: 1
+          - type: TargetLayoutBox
+            label: Time
+            children:
+                - type: VariablesListBox
+                  name: time
+                  isTarget: true
+                  maxItemCount: 1
+          - type: TargetLayoutBox
+            label: Treatment indicator (1 = treated)
+            children:
+                - type: VariablesListBox
+                  name: treatInd
+                  isTarget: true
+                  maxItemCount: 1
+          - type: TargetLayoutBox
+            label: First treated period (optional)
+            children:
+                - type: VariablesListBox
+                  name: adoption
+                  isTarget: true
+                  maxItemCount: 1
+          - type: TargetLayoutBox
+            label: Covariates
+            children:
+                - type: VariablesListBox
+                  name: predictors
+                  isTarget: true
+    - type: CollapseBox
+      label: Estimation
+      collapsed: true
+      children:
+          - type: CheckBox
+            name: fixedeff
+          - type: CheckBox
+            name: timeCohort
+          - type: TextBox
+            name: nuText
+            label: Pooling parameter nu (blank = automatic)
+            format: string
+          - type: TextBox
+            name: lambda
+            label: Ridge penalty on weights
+            format: number
+          - type: TextBox
+            name: nLeads
+            label: Post-treatment periods (blank = all)
+            format: string
+          - type: TextBox
+            name: nLags
+            label: Pre-treatment periods (blank = all)
+            format: string
+    - type: CollapseBox
+      label: Inference
+      collapsed: true
+      children:
+          - type: ComboBox
+            name: infType
+          - type: TextBox
+            name: nBoot
+            label: Bootstrap replications
+            format: number
+          - type: TextBox
+            name: alpha
+            label: Significance level
+            format: number
+          - type: TextBox
+            name: seed
+            label: Random seed
+            format: number
+    - type: CollapseBox
+      label: Output
+      collapsed: true
+      children:
+          - type: CheckBox
+            name: showHelp
+            label: Method notes
+          - type: CheckBox
+            name: showGuide
+            label: Data and setup guide
+          - type: CheckBox
+            name: showWeights

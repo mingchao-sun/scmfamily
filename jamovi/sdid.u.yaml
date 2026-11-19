@@ -1,0 +1,84 @@
+name: sdid
+title: "Synthetic Difference-in-Differences"
+jus: '3.0'
+stage: 0
+compilerMode: tame
+children:
+    - type: VariableSupplier
+      persistentItems: false
+      stretchFactor: 1
+      children:
+          - type: TargetLayoutBox
+            label: Outcome
+            children:
+                - type: VariablesListBox
+                  name: outcome
+                  isTarget: true
+                  maxItemCount: 1
+          - type: TargetLayoutBox
+            label: Unit
+            children:
+                - type: VariablesListBox
+                  name: unit
+                  isTarget: true
+                  maxItemCount: 1
+          - type: TargetLayoutBox
+            label: Time
+            children:
+                - type: VariablesListBox
+                  name: time
+                  isTarget: true
+                  maxItemCount: 1
+          - type: TargetLayoutBox
+            label: Covariates
+            children:
+                - type: VariablesListBox
+                  name: predictors
+                  isTarget: true
+    - type: LevelSelector
+      name: treatedUnit
+      label: Treated unit
+    - type: TextBox
+      name: extraTreated
+      label: Additional treated units
+      format: string
+    - type: TextBox
+      name: treatmentTime
+      label: First treated period
+      format: number
+    - type: TextBox
+      name: donorExclude
+      label: Exclude donors
+      format: string
+    - type: CollapseBox
+      label: Estimation
+      collapsed: true
+      children:
+          - type: ComboBox
+            name: estimator
+    - type: CollapseBox
+      label: Inference
+      collapsed: true
+      children:
+          - type: ComboBox
+            name: seMethod
+          - type: TextBox
+            name: seReps
+            label: Replications
+            format: number
+          - type: TextBox
+            name: seed
+            label: Random seed
+            format: number
+    - type: CollapseBox
+      label: Output
+      collapsed: true
+      children:
+          - type: CheckBox
+            name: showHelp
+            label: Method notes
+          - type: CheckBox
+            name: showGuide
+            label: Data and setup guide
+          - type: CheckBox
+            name: showPath

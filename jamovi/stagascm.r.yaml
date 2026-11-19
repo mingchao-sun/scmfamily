@@ -1,0 +1,125 @@
+---
+name: stagascm
+title: "Staggered-Adoption Augmented Synthetic Control"
+jrs: '1.1'
+
+items:
+    - name: guide
+      title: Data and setup guide
+      type: Html
+      visible: (showGuide)
+
+    - name: helpText
+      title: Method notes
+      type: Html
+      visible: (showHelp)
+
+    - name: notes
+      title: Method
+      type: Html
+      visible: (outcome)
+
+    - name: summary
+      title: Overall estimate and balance
+      type: Table
+      visible: (outcome)
+      refs:
+          - benmichael2022
+          - augsynth
+          - osqp
+      columns:
+          - name: metric
+            title: Metric
+            type: text
+          - name: value
+            title: Value
+            type: number
+            format: dp:3
+
+    - name: units
+      title: Effect by treated unit (or adoption cohort)
+      type: Table
+      visible: (outcome)
+      columns:
+          - name: unit
+            title: Unit
+            type: text
+          - name: att
+            title: Average post-treatment effect
+            type: number
+            format: dp:3
+          - name: se
+            title: Std. error
+            type: number
+            format: dp:3
+          - name: lower
+            title: Lower
+            type: number
+            format: dp:3
+          - name: upper
+            title: Upper
+            type: number
+            format: dp:3
+
+    - name: event
+      title: Average effect by event time
+      type: Table
+      visible: (outcome)
+      columns:
+          - name: k
+            title: Periods since adoption
+            type: integer
+          - name: estimate
+            title: Estimate
+            type: number
+            format: dp:3
+          - name: se
+            title: Std. error
+            type: number
+            format: dp:3
+          - name: lower
+            title: Lower
+            type: number
+            format: dp:3
+          - name: upper
+            title: Upper
+            type: number
+            format: dp:3
+
+    - name: balance
+      title: Covariate imbalance after weighting
+      type: Table
+      visible: (predictors)
+      columns:
+          - name: covariate
+            title: Covariate
+            type: text
+          - name: average
+            title: Average over treated units
+            type: number
+            format: dp:3
+
+    - name: weights
+      title: Donor weights
+      type: Table
+      visible: (showWeights)
+      columns:
+          - name: treated
+            title: Treated unit
+            type: text
+          - name: donor
+            title: Donor unit
+            type: text
+          - name: weight
+            title: Weight
+            type: number
+            format: dp:4
+
+    - name: eventPlot
+      title: Event-study plot
+      type: Image
+      width: 600
+      height: 400
+      renderFun: .plotEvent
+      visible: (outcome)
+...

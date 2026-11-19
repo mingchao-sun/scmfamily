@@ -1,0 +1,95 @@
+---
+name: demsc
+title: "Demeaned Synthetic Control"
+jas: '1.2'
+version: '1.0.0'
+menuGroup: SCM
+menuTitle: "Demeaned Synthetic Control"
+menuSubtitle: "Ferman and Pinto (2021)"
+
+options:
+    - name: data
+      type: Data
+
+    - name: outcome
+      title: Outcome
+      type: Variable
+      suggested:
+          - continuous
+      permitted:
+          - numeric
+
+    - name: unit
+      title: Unit
+      type: Variable
+      permitted:
+          - factor
+          - id
+
+    - name: time
+      title: Time
+      type: Variable
+      permitted:
+          - numeric
+          - factor
+          - id
+
+    - name: treatedUnit
+      title: Treated unit
+      type: Level
+      variable: (unit)
+
+    - name: treatmentTime
+      title: First treated period
+      type: Number
+      default: 2000
+      min: 0
+
+    - name: donorExclude
+      title: Exclude donors (comma-separated)
+      type: String
+      default: ""
+
+    - name: placebo
+      title: Permutation (placebo) inference
+      type: Bool
+      default: true
+
+    - name: placeboPreRatio
+      title: Pre-fit filter (max pre-RMSPE ratio)
+      type: Number
+      default: 2
+      min: 1
+
+    - name: showPath
+      title: Period-by-period table
+      type: Bool
+      default: false
+    - name: conformal
+      title: Conformal inference (Chernozhukov et al. 2021)
+      type: Bool
+      default: false
+
+    - name: predictors
+      title: Covariates (optional)
+      type: Variables
+      permitted:
+          - numeric
+      description: Covariates matched through their pre-treatment means, together with the pre-treatment outcomes.
+
+    - name: covWeight
+      title: Covariate weight (relative to outcomes)
+      type: Number
+      default: 1
+      min: 0
+      description: Weight of the whole covariate block relative to the pre-treatment outcome block. 1 gives both blocks equal total weight.
+
+    - name: showGuide
+      title: Data and setup guide
+      type: Bool
+      default: false
+
+    - name: showHelp
+      title: Method notes
+      type: Bool
+      default: false

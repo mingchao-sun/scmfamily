@@ -1,0 +1,94 @@
+---
+name: ife
+title: "Interactive Fixed Effects (GSC)"
+jas: '1.2'
+version: '1.0.0'
+menuGroup: SCM
+menuTitle: "Interactive Fixed Effects (GSC)"
+menuSubtitle: "Xu (2017)"
+
+options:
+    - name: data
+      type: Data
+
+    - name: outcome
+      title: Outcome
+      type: Variable
+      suggested:
+          - continuous
+      permitted:
+          - numeric
+
+    - name: unit
+      title: Unit
+      type: Variable
+      permitted:
+          - factor
+          - id
+
+    - name: time
+      title: Time
+      type: Variable
+      permitted:
+          - numeric
+          - factor
+          - id
+
+    - name: treatedUnit
+      title: Treated unit
+      type: Level
+      variable: (unit)
+
+    - name: treatmentTime
+      title: First treated period
+      type: Number
+      default: 2000
+      min: 0
+
+    - name: donorExclude
+      title: Exclude donors (comma-separated)
+      type: String
+      default: ""
+
+    - name: placebo
+      title: Permutation (placebo) inference
+      type: Bool
+      default: true
+
+    - name: placeboPreRatio
+      title: Pre-fit filter (max pre-RMSPE ratio)
+      type: Number
+      default: 2
+      min: 1
+
+    - name: showPath
+      title: Period-by-period table
+      type: Bool
+      default: false
+
+    - name: nFactors
+      title: Number of factors (r)
+      type: Number
+      default: 1
+      min: 1
+    - name: conformal
+      title: Conformal inference (Chernozhukov et al. 2021)
+      type: Bool
+      default: false
+
+    - name: predictors
+      title: Covariates (optional)
+      type: Variables
+      permitted:
+          - numeric
+      description: Time-varying covariates entering as regressors with common coefficients (must be observed in every period).
+
+    - name: showGuide
+      title: Data and setup guide
+      type: Bool
+      default: false
+
+    - name: showHelp
+      title: Method notes
+      type: Bool
+      default: false

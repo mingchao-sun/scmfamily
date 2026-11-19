@@ -1,0 +1,88 @@
+name: pensc
+title: "Penalized Synthetic Control"
+jus: '3.0'
+stage: 0
+compilerMode: tame
+children:
+    - type: VariableSupplier
+      persistentItems: false
+      stretchFactor: 1
+      children:
+          - type: TargetLayoutBox
+            label: Outcome
+            children:
+                - type: VariablesListBox
+                  name: outcome
+                  isTarget: true
+                  maxItemCount: 1
+          - type: TargetLayoutBox
+            label: Unit
+            children:
+                - type: VariablesListBox
+                  name: unit
+                  isTarget: true
+                  maxItemCount: 1
+          - type: TargetLayoutBox
+            label: Time
+            children:
+                - type: VariablesListBox
+                  name: time
+                  isTarget: true
+                  maxItemCount: 1
+          - type: TargetLayoutBox
+            label: Covariates
+            children:
+                - type: VariablesListBox
+                  name: predictors
+                  isTarget: true
+    - type: LevelSelector
+      name: treatedUnit
+      label: Treated unit
+    - type: TextBox
+      name: treatmentTime
+      label: First treated period
+      format: number
+    - type: TextBox
+      name: donorExclude
+      label: Exclude donors
+      format: string
+    - type: CollapseBox
+      label: Inference
+      collapsed: true
+      children:
+          - type: CheckBox
+            name: placebo
+          - type: TextBox
+            name: placeboPreRatio
+            label: Pre-fit filter (max RMSPE ratio)
+            format: number
+    - type: CollapseBox
+      label: Estimation
+      collapsed: true
+      children:
+          - type: TextBox
+            name: lambda
+            label: Penalty lambda (standardised units)
+            format: number
+          - type: TextBox
+            name: covWeight
+            label: Covariate weight (relative to outcomes)
+            format: number
+    - type: CollapseBox
+      label: Conformal inference
+      collapsed: true
+      children:
+          - type: CheckBox
+            name: conformal
+    - type: CollapseBox
+      label: Output
+      collapsed: true
+      children:
+          - type: CheckBox
+            name: showHelp
+            label: Method notes
+          - type: CheckBox
+            name: showGuide
+            label: Data and setup guide
+          - type: CheckBox
+            name: showPath

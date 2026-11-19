@@ -1,0 +1,121 @@
+---
+title: Synthetic Control Family
+name: scmfamily
+version: 1.0.0
+jms: '1.0'
+authors:
+  - Mingchao Sun
+maintainer: Mingchao Sun <mingchao.sun@hotmail.com>
+date: '2026-11-20'
+type: R
+description: >-
+  Ten synthetic control estimators for comparative case studies and panel data:
+  classic, penalized, demeaned, augmented, elastic-net, Bayesian, interactive
+  fixed effects, matrix completion, synthetic difference-in-differences and
+  staggered augmented synthetic control, with placebo, conformal, jackknife and
+  bootstrap inference.
+datasets:
+  - name: California Proposition 99
+    path: prop99_long.csv
+    description: Cigarette sales per capita, 39 US states, 1970-2000
+  - name: California Proposition 99 (with covariates)
+    path: prop99_covariates.csv
+    description: >-
+      Same panel plus lnincome, beer, age15to24 and retprice, usable as
+      predictors
+  - name: West Germany reunification
+    path: west_germany.csv
+    description: >-
+      GDP per capita for 17 OECD countries, 1960-2003, with inflation, trade,
+      schooling and industry share (data from the scpi package; Abadie, Diamond
+      and Hainmueller, 2015). Treated country West Germany, first treated period
+      1990.
+  - name: Minimum wage and teen employment (staggered)
+    path: mpdta_minwage.csv
+    description: >-
+      Log teen employment in 500 US counties, 2003-2007, with minimum wage
+      increases first applied in 2004, 2006 or 2007 and 309 never-treated
+      counties (mpdta from the did package; Callaway and Sant'Anna, 2021). Use
+      first_treat as the first treated period and time cohorts.
+analyses:
+  - name: scm
+    title: Synthetic Control
+    menuGroup: SCM
+    menuTitle: Synthetic Control
+    menuSubtitle: Abadie et al. (2010)
+    ns: scmfamily
+    category: analyses
+  - name: pensc
+    title: Penalized Synthetic Control
+    menuGroup: SCM
+    menuTitle: Penalized Synthetic Control
+    menuSubtitle: Abadie and L'Hour (2021)
+    ns: scmfamily
+    category: analyses
+  - name: demsc
+    title: Demeaned Synthetic Control
+    menuGroup: SCM
+    menuTitle: Demeaned Synthetic Control
+    menuSubtitle: Ferman and Pinto (2021)
+    ns: scmfamily
+    category: analyses
+  - name: ascm
+    title: Augmented Synthetic Control
+    menuGroup: SCM
+    menuTitle: Augmented Synthetic Control
+    menuSubtitle: Ben-Michael et al. (2021)
+    ns: scmfamily
+    category: analyses
+  - name: enet
+    title: Elastic-Net Synthetic Control
+    menuGroup: SCM
+    menuTitle: Elastic-Net Synthetic Control
+    menuSubtitle: Doudchenko and Imbens (2016)
+    ns: scmfamily
+    category: analyses
+  - name: bscm
+    title: Bayesian Synthetic Control
+    menuGroup: SCM
+    menuTitle: Bayesian Synthetic Control
+    menuSubtitle: Kim, Lee and Gupta (2020)
+    ns: scmfamily
+    category: analyses
+  - name: ife
+    title: Interactive Fixed Effects (GSC)
+    menuGroup: SCM
+    menuTitle: Interactive Fixed Effects (GSC)
+    menuSubtitle: Xu (2017)
+    ns: scmfamily
+    category: analyses
+  - name: mc
+    title: Matrix Completion
+    menuGroup: SCM
+    menuTitle: Matrix Completion
+    menuSubtitle: Athey et al. (2021)
+    ns: scmfamily
+    category: analyses
+  - name: sdid
+    title: Synthetic Difference-in-Differences
+    menuGroup: SCM
+    menuTitle: Synthetic Difference-in-Differences
+    menuSubtitle: Arkhangelsky et al. (2021)
+    ns: scmfamily
+    category: analyses
+  - name: stagascm
+    title: Staggered-Adoption Augmented Synthetic Control
+    menuGroup: SCM
+    menuTitle: Staggered Augmented SC
+    menuSubtitle: Ben-Michael et al. (2022)
+    ns: scmfamily
+    category: analyses
+  - name: compare
+    title: Compare Estimators
+    menuGroup: SCM
+    menuTitle: Compare Estimators
+    menuSubtitle: Side-by-side results
+    ns: scmfamily
+    category: analyses
+usesNative: true
+minApp: 1.0.8
+
+...

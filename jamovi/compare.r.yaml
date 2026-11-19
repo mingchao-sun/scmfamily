@@ -1,0 +1,159 @@
+---
+name: compare
+title: "Compare Estimators"
+jrs: '1.1'
+
+items:
+    - name: guide
+      title: Data and setup guide
+      type: Html
+      visible: (showGuide)
+
+    - name: helpText
+      title: Method notes
+      type: Html
+      visible: (showHelp)
+
+    - name: notes
+      title: Method
+      type: Html
+      visible: (outcome)
+
+    - name: summary
+      title: Estimates by method
+      type: Table
+      visible: (outcome)
+      refs:
+          - abadie2010
+          - abadie2021
+          - ferman2021
+          - benmichael2021
+          - doudchenko2016
+          - kim2020
+          - xu2017
+          - athey2021
+          - arkhangelsky2021
+      columns:
+          - name: method
+            title: Method
+            type: text
+          - name: att
+            title: ATT
+            type: number
+            format: dp:3
+          - name: rmspePre
+            title: Pre RMSPE
+            type: number
+            format: dp:3
+          - name: rmspePost
+            title: Post RMSPE
+            type: number
+            format: dp:3
+          - name: ratio
+            title: Post/pre ratio
+            type: number
+            format: dp:3
+          - name: nw
+            title: Donors used
+            type: integer
+          - name: se
+            title: SE
+            type: number
+            format: dp:3
+          - name: lower
+            title: Lower 95%
+            type: number
+            format: dp:3
+          - name: upper
+            title: Upper 95%
+            type: number
+            format: dp:3
+          - name: p
+            title: p-value
+            type: number
+            format: dp:3
+          - name: basis
+            title: Uncertainty based on
+            type: text
+
+    - name: pathTable
+      title: Period-by-period counterfactuals
+      type: Table
+      visible: (showPath)
+      columns:
+          - name: time
+            title: Time
+            type: text
+          - name: treated
+            title: Treated
+            type: number
+            format: dp:3
+          - name: scm
+            title: "Synthetic Control (classic)"
+            type: number
+            format: dp:3
+            visible: (cmpScm)
+          - name: pen
+            title: "Penalized"
+            type: number
+            format: dp:3
+            visible: (cmpPen)
+          - name: dem
+            title: "Demeaned"
+            type: number
+            format: dp:3
+            visible: (cmpDem)
+          - name: ascm
+            title: "Augmented (ridge)"
+            type: number
+            format: dp:3
+            visible: (cmpAscm)
+          - name: enet
+            title: "Elastic-Net"
+            type: number
+            format: dp:3
+            visible: (cmpEnet)
+          - name: bscm
+            title: "Bayesian"
+            type: number
+            format: dp:3
+            visible: (cmpBscm)
+          - name: ife
+            title: "Interactive Fixed Effects"
+            type: number
+            format: dp:3
+            visible: (cmpIfe)
+          - name: mc
+            title: "Matrix Completion"
+            type: number
+            format: dp:3
+            visible: (cmpMc)
+          - name: sdid
+            title: "SDID"
+            type: number
+            format: dp:3
+            visible: (cmpSdid)
+
+    - name: pathsPlot
+      title: Treated vs counterfactuals
+      type: Image
+      width: 650
+      height: 480
+      renderFun: .plotPaths
+      visible: (outcome)
+
+    - name: gapsPlot
+      title: Gaps by method
+      type: Image
+      width: 650
+      height: 480
+      renderFun: .plotGaps
+      visible: (outcome)
+
+    - name: attPlot
+      title: ATT by method
+      type: Image
+      width: 650
+      height: 480
+      renderFun: .plotAtt
+      visible: (outcome)

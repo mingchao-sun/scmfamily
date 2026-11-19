@@ -1,0 +1,122 @@
+---
+name: mc
+title: "Matrix Completion"
+jrs: '1.1'
+
+items:
+    - name: guide
+      title: Data and setup guide
+      type: Html
+      visible: (showGuide)
+
+    - name: helpText
+      title: Method notes
+      type: Html
+      visible: (showHelp)
+
+    - name: notes
+      title: Method
+      type: Html
+      visible: (outcome)
+
+    - name: summary
+      title: Estimate and pre/post fit
+      type: Table
+      visible: (outcome)
+      refs:
+          - athey2021
+      columns:
+          - name: metric
+            title: Metric
+            type: text
+          - name: value
+            title: Value
+            type: number
+            format: dp:3
+
+    - name: weights
+      title: Donor weights
+      type: Table
+      visible: (outcome)
+      columns:
+          - name: unit
+            title: Donor unit
+            type: text
+          - name: weight
+            title: Weight
+            type: number
+            format: dp:4
+
+    - name: inference
+      title: Permutation inference
+      type: Table
+      visible: (placebo)
+      columns:
+          - name: metric
+            title: Test
+            type: text
+          - name: value
+            title: Value
+            type: number
+            format: dp:3
+
+    - name: placeboTable
+      title: Placebo units
+      type: Table
+      visible: (placebo)
+      columns:
+          - name: unit
+            title: Unit
+            type: text
+          - name: ratio
+            title: Post/pre RMSPE
+            type: number
+            format: dp:3
+          - name: preRmspe
+            title: Pre RMSPE
+            type: number
+            format: dp:3
+          - name: att
+            title: ATT
+            type: number
+            format: dp:3
+          - name: included
+            title: In filtered test
+            type: text
+
+    - name: pathTable
+      title: Period-by-period path
+      type: Table
+      visible: (showPath)
+      columns:
+          - name: time
+            title: Time
+            type: text
+          - name: treated
+            title: Treated
+            type: number
+            format: dp:3
+          - name: synthetic
+            title: Counterfactual
+            type: number
+            format: dp:3
+          - name: gap
+            title: Gap
+            type: number
+            format: dp:3
+
+    - name: pathsPlot
+      title: Treated vs counterfactual
+      type: Image
+      width: 600
+      height: 400
+      renderFun: .plotPaths
+      visible: (outcome)
+
+    - name: gapsPlot
+      title: Gap and placebo gaps
+      type: Image
+      width: 600
+      height: 400
+      renderFun: .plotGaps
+      visible: (outcome)

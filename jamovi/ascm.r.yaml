@@ -1,0 +1,134 @@
+---
+name: ascm
+title: "Augmented Synthetic Control"
+jrs: '1.1'
+
+items:
+    - name: guide
+      title: Data and setup guide
+      type: Html
+      visible: (showGuide)
+
+    - name: helpText
+      title: Method notes
+      type: Html
+      visible: (showHelp)
+
+    - name: notes
+      title: Method
+      type: Html
+      visible: (outcome)
+
+    - name: summary
+      title: Average post-treatment effect and fit
+      type: Table
+      visible: (outcome)
+      refs:
+          - benmichael2021
+          - augsynth
+          - osqp
+      columns:
+          - name: metric
+            title: Metric
+            type: text
+          - name: value
+            title: Value
+            type: number
+            format: dp:3
+
+    - name: weights
+      title: Donor weights
+      type: Table
+      visible: (outcome)
+      columns:
+          - name: unit
+            title: Donor unit
+            type: text
+          - name: weight
+            title: Weight
+            type: number
+            format: dp:4
+
+    - name: balance
+      title: Covariate balance (pre-treatment means)
+      type: Table
+      visible: (predictors)
+      columns:
+          - name: predictor
+            title: Covariate
+            type: text
+          - name: treated
+            title: Treated
+            type: number
+            format: dp:3
+          - name: synthetic
+            title: Weighted donors
+            type: number
+            format: dp:3
+
+    - name: effects
+      title: Effect by post-treatment period
+      type: Table
+      visible: (outcome)
+      columns:
+          - name: time
+            title: Time
+            type: text
+          - name: estimate
+            title: Estimate
+            type: number
+            format: dp:3
+          - name: se
+            title: Std. error
+            type: number
+            format: dp:3
+          - name: lower
+            title: Lower
+            type: number
+            format: dp:3
+          - name: upper
+            title: Upper
+            type: number
+            format: dp:3
+          - name: p
+            title: p
+            type: number
+            format: zto,pvalue
+
+    - name: pathTable
+      title: Period-by-period path
+      type: Table
+      visible: (showPath)
+      columns:
+          - name: time
+            title: Time
+            type: text
+          - name: treated
+            title: Treated (average)
+            type: number
+            format: dp:3
+          - name: synthetic
+            title: Counterfactual
+            type: number
+            format: dp:3
+          - name: gap
+            title: Gap
+            type: number
+            format: dp:3
+
+    - name: pathsPlot
+      title: Treated vs counterfactual
+      type: Image
+      width: 600
+      height: 400
+      renderFun: .plotPaths
+      visible: (outcome)
+
+    - name: gapsPlot
+      title: Estimated effect over time
+      type: Image
+      width: 600
+      height: 400
+      renderFun: .plotGaps
+      visible: (outcome)
+...

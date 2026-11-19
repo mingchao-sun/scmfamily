@@ -1,0 +1,28 @@
+Package: scmfamily
+Type: Package
+Title: Synthetic Control Family for jamovi
+Version: 1.0.0
+Author: Mingchao Sun
+Maintainer: Mingchao Sun <mingchao.sun@hotmail.com>
+URL: https://github.com/mingchao-sun/scmfamily
+BugReports: https://github.com/mingchao-sun/scmfamily/issues
+Description: Ten synthetic-control estimators for comparative case studies with
+    panel data: classic synthetic control (Abadie, Diamond and Hainmueller, 2010),
+    penalized (Abadie and L'Hour, 2021), demeaned (Ferman and Pinto, 2021),
+    augmented (Ben-Michael, Feller and Rothstein, 2021), elastic-net (Doudchenko and
+    Imbens, 2016), Bayesian (Kim, Lee and Gupta, 2020), interactive fixed effects
+    (Xu, 2017), matrix completion (Athey et al., 2021), synthetic
+    difference-in-differences (Arkhangelsky et al., 2021) and staggered augmented
+    synthetic control (Ben-Michael, Feller and Rothstein, 2022). The synthetic
+    difference-in-differences and augmented analyses reproduce the R packages
+    synthdid and augsynth.
+License: GPL (>= 2)
+Encoding: UTF-8
+Imports:
+    jmvcore (>= 2.3.4),
+    R6,
+    ggplot2,
+    quadprog,
+    osqp,
+    Matrix,
+    glmnet

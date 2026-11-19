@@ -1,0 +1,93 @@
+---
+name: enet
+title: "Elastic-Net Synthetic Control"
+jas: '1.2'
+version: '1.0.0'
+menuGroup: SCM
+menuTitle: "Elastic-Net Synthetic Control"
+menuSubtitle: "Doudchenko and Imbens (2016)"
+
+options:
+    - name: data
+      type: Data
+
+    - name: outcome
+      title: Outcome
+      type: Variable
+      suggested:
+          - continuous
+      permitted:
+          - numeric
+
+    - name: unit
+      title: Unit
+      type: Variable
+      permitted:
+          - factor
+          - id
+
+    - name: time
+      title: Time
+      type: Variable
+      permitted:
+          - numeric
+          - factor
+          - id
+
+    - name: treatedUnit
+      title: Treated unit
+      type: Level
+      variable: (unit)
+
+    - name: treatmentTime
+      title: First treated period
+      type: Number
+      default: 2000
+      min: 0
+
+    - name: donorExclude
+      title: Exclude donors (comma-separated)
+      type: String
+      default: ""
+
+    - name: placebo
+      title: Permutation (placebo) inference
+      type: Bool
+      default: true
+
+    - name: placeboPreRatio
+      title: Pre-fit filter (max pre-RMSPE ratio)
+      type: Number
+      default: 2
+      min: 1
+
+    - name: showPath
+      title: Period-by-period table
+      type: Bool
+      default: false
+
+    - name: enetAlpha
+      title: Elastic-net mixing alpha (0 ridge, 1 lasso)
+      type: Number
+      default: 0.5
+      min: 0
+      max: 1
+    - name: conformal
+      title: Conformal inference (Chernozhukov et al. 2021)
+      type: Bool
+      default: false
+
+    - name: enetCV
+      title: Choose alpha by cross-validation (0.1 to 0.9)
+      type: Bool
+      default: true
+
+    - name: showGuide
+      title: Data and setup guide
+      type: Bool
+      default: false
+
+    - name: showHelp
+      title: Method notes
+      type: Bool
+      default: false
